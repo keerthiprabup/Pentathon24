@@ -1,0 +1,22 @@
+RewriteEngine On
+
+# Redirect URLs to main.php
+RewriteRule ^/image/(.*)$ http://complaint-box-container/subdomain/$1 [L,R=301]
+
+
+# Block access to main.php
+<Files "./subdomain/main.php">
+    Order allow,deny
+    Deny from all
+</Files>
+# Block access to main.php
+<Files "./subdomain/uploads.php">
+    Order allow,deny
+    Deny from all
+</Files>
+# Allow access to main.php when redirected from complaints.php
+<Files "complaints.php">
+    Order deny,allow
+    Allow from all
+</Files>
+

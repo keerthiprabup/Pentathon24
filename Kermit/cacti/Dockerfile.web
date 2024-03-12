@@ -1,0 +1,32 @@
+# Start from the original cacti image
+FROM complaint-box AS complaint
+FROM vulhub/cacti:1.2.22 
+RUN apt-get update
+RUN apt-get install -y openssh-server net-tools netcat
+
+ 
+
+RUN useradd -m -s /bin/bash kermit \
+    && echo "kermit:0n3_st3p_c10s3r" | chpasswd
+
+RUN echo "pentathon{cdc2ec2673abd58db14c8a70e231d007f6c2ae347b27b7c8e4eeb93e1ed61fdb}" > /home/kermit/user.txt
+RUN echo "pentathon{d73fa5793667919bee5b22b55631fb2e99cf0689cf15adb6d93845b106294007}" > /root/root.txt
+
+
+COPY entrypoint.sh /entrypoint.sh
+
+# Make the entrypoint script executable
+RUN chmod +x /entrypoint.sh
+
+# Expose port 80 for the PHP server
+EXPOSE 8000 22
+
+RUN mkdir -p /home/kermit/.ssh
+COPY --from=complaint /home/kermit/.ssh/ /home/kermit/.ssh/
+
+RUN chown -R kermit:kermit /home/kermit
+
+HEALTHCHECK --interval=30s --timeout=10s --retries=3 \
+    CMD curl -f http://localhost:8000 || php -S 0.0.0.0:8000 -t /var/www/html \
+    && service ssh status || service ssh start \
+    
