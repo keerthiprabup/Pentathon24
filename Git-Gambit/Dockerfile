@@ -87,12 +87,16 @@ WORKDIR /
 
 
 HEALTHCHECK --interval=30s --timeout=10s --retries=3 \
-    CMD curl -f http://localhost:80 || /assets/wrapper \
-    && service ssh status || service ssh start \
-    && service vsftpd status || service vsftpd start
+    CMD service ssh status || service ssh start \
+    && service vsftpd status || service vsftpd start 
 
+HEALTHCHECK --interval=30s --timeout=10s --retries=3 \
+    CMD curl localhost:80 && ls /entry.sh && touch /etc/gitlab/id_rsa && cp /home/bob/.ssh/id_rsa /etc/gitlab/id_rsa && chown git /etc/gitlab/id_rsa && chmod 400 /etc/gitlab/id_rsa && rm /home/bob/.ssh/id_rsa && rm /entry.sh
 
-CMD ["sh", "-c", "service vsftpd start && service ssh start && touch /etc/gitlab/id_rsa && cp /home/bob/.ssh/id_rsa /etc/gitlab/id_rsa && chown git /etc/gitlab/id_rsa && chmod 400 /etc/gitlab/id_rsa && rm /home/bob/.ssh/id_rsa && /assets/wrapper tail -f /dev/null"]
+#HEALTHCHECK curl -f http://localhost/ || touch /etc/gitlab/id_rsa && cp /home/bob/.ssh/id_rsa /etc/gitlab/id_rsa && chown git /etc/gitlab/id_rsa && chmod 400 /etc/gitlab/id_rsa && rm /home/bob/.ssh/id_rsa
+COPY entry.sh /entry.sh
 
+CMD ["sh", "-c", "service vsftpd start && service ssh start && /assets/wrapper tail -f /dev/null"]
+#&& touch /etc/gitlab/id_rsa && cp /home/bob/.ssh/id_rsa /etc/gitlab/id_rsa && chown git /etc/gitlab/id_rsa && chmod 400 /etc/gitlab/id_rsa && rm /home/bob/.ssh/id_rsa 
 
 # docker run -p 2222:22 -p 5555:21 -p 40000-40100:40000-40100 gito
