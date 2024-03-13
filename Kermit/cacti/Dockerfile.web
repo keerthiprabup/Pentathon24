@@ -2,7 +2,7 @@
 FROM complaint-box AS complaint
 FROM vulhub/cacti:1.2.22 
 RUN apt-get update
-RUN apt-get install -y openssh-server net-tools netcat
+RUN apt-get install -y openssh-server net-tools netcat sudo
 
  
 
