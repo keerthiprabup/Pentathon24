@@ -3,9 +3,8 @@ FROM php:apache
 
 # Set the working directory in the container
 WORKDIR /var/www/html
-RUN apt-get update && apt-get install -y ncat python3 curl zip wget gcc openssh-server sudo && \
+RUN apt-get update && apt-get install -y ncat curl zip wget gcc openssh-server net-tools  && \
     rm -rf /var/lib/apt/lists/*
-
 RUN useradd -m -s /bin/bash kermit \
     && echo "kermit:0n3_st3p_c10s3r" | chpasswd
 USER kermit
@@ -14,12 +13,10 @@ RUN mkdir -p /home/kermit/.ssh && \
     cp /home/kermit/.ssh/id_rsa.pub /home/kermit/.ssh/authorized_keys && \
     chown -R kermit:kermit /home/kermit/.ssh
 USER root
-RUN chmod 777 /home/kermit/.ssh/id_rsa
-
 # Copy the PHP files into the container
 COPY index.php .
 COPY complaints.php .
-#COPY challenge.c .
+COPY challenge.c .
 COPY background.jpg .
 # Enable Apache modules
 RUN a2enmod rewrite
@@ -56,21 +53,18 @@ RUN mv ./uploads.php actual/
 # Restrict direct access to the subdomain
 RUN mv ./.htaccess actual/
 RUN mkdir /var/www/html/resources
-#RUN mv ./challenge.c /var/www/html/resources 
-#RUN gcc /var/www/html/resources/challenge.c -o /var/www/html/resources/app -lm
-#RUN rm /var/www/html/resources/challenge.c
-#RUN chown kermit:kermit /var/www/html/resources/app
+RUN mv ./challenge.c /var/www/html/resources 
+RUN gcc /var/www/html/resources/challenge.c -o /var/www/html/resources/app -lm
+RUN rm /var/www/html/resources/challenge.c
+RUN chown kermit:kermit /var/www/html/resources/app
 WORKDIR /var/www/html/uploads
-#RUN chown -R kermit:kermit /home/kermit
-#RUN chmod +x /var/www/html/resources/app
+RUN chown -R kermit:kermit /home/kermit
+USER kermit
+RUN chmod 4755 /var/www/html/resources/app
+RUN chmod u+s /var/www/html/resources/app
+RUN chmod 400 /home/kermit/.ssh/id_rsa
 
-
-#RUN chmod 6775 /var/www/html/resources/app
-
-
-
-# Expose port 80 for Apache
+USER root 
 EXPOSE 80
-
 HEALTHCHECK --interval=30s --timeout=10s --retries=3 \
     CMD curl -f http://localhost:80 || service apache2 start

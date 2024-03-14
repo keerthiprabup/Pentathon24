@@ -127,9 +127,10 @@ int func_6(char *a){
     }
     strcpy(filename, initial_filename);
     strcat(filename, a);
-    int result = access(filename, R_OK);    
+    setreuid(1000, 1000);
+    int result = access(filename,4);    
     if(result == -1){
-        printf("File not found\n");
+        printf("File not found or not readable\n");
     }else{
         printf("File found\n");
         FILE *fptr;
