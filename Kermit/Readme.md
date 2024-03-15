@@ -5,7 +5,9 @@ rootflag - ` pentathon{d73fa5793667919bee5b22b55631fb2e99cf0689cf15adb6d93845b10
 
 ## Description
 
+The government has recently launched a new Digital Forensics and Incident Response (DFIR) website, packed with essential tools for investigations. However, rumors suggest that it harbors security vulnerabilities waiting to be exploited.
 
+Your mission, should you choose to accept it, is to breach the website's defenses and gain root access to the server. Can you navigate through the security flaws and uncover the secrets hidden within? 
 
 ## How to set up the Vulnerable Machines? 
 

@@ -6,7 +6,11 @@ rootflag - `pentathon{c5504ece6809b48459803fbb7874643a9f964c44f7fcc2db2a7d41132b
 
 ## Description
 
+Welcome to the PowerStation Intrusion Challenge! Your task is to infiltrate Bob's computer system and gain unauthorized access. Bob, a dedicated developer at the PowerStation, has been investing long hours into coding essential systems. Unfortunately, Bob struggles with managing his credentials, leaving him vulnerable to security breaches.
 
+One fateful day, Bob's computer suffered a crash, prompting him to seek assistance from his colleague, John, for analyzing the crash files. However, John, similarly plagued by poor credential management practices, inadvertently exposed credentials on the internet while troubleshooting the issue.
+
+Your mission is to exploit the disclosed credentials to breach Bob's computer system. Gain access and retrieve the confidential data stored within. But remember, you're doing this as part of a controlled environment to test your skills and the system's security measures. Good luck!
 
 
 ## How to set up the Vulnerable Machines? 
