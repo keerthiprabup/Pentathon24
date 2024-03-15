@@ -46,7 +46,7 @@ Note: If you have other VMs running in the network, they will also be shown here
 
 Once you have finished the challenge, please draft a write up about how you solved the challenge. A sample report will be given along with the guidelines. Please make sure to follow the same format. You will find an option to upload the writeup in the challenge page. 
 
-
+[Sample Report](Sample Report.docx)
 
 
 
