@@ -46,9 +46,11 @@ Once you have finished the challenge, please draft a write up about how you solv
 
 ## Building 
 
-The VM image is given out in a onedrive. 
+The VM image is given out in S3 
 
-[VMLink](https://amritauniv-my.sharepoint.com/personal/varunnair_am_amrita_edu/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fvarunnair%5Fam%5Famrita%5Fedu%2FDocuments%2FKermit&ga=1)
+[VMLink](https://pentathon.s3.ap-south-1.amazonaws.com/Kermit.7z)
+
+File hash ( SHA256) -  F8E1549C87877E660AC366A77194AD18B5E25BDED3EDF7986985362FA9B96E6A
 
 ## Exploit
 

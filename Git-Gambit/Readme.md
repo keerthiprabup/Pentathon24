@@ -52,10 +52,11 @@ Once you have finished the challenge, please draft a write up about how you solv
 
 ## Building 
 
-The VM image is given out in a onedrive. 
+The VM image is given out in s3. 
 
-[VMLink](https://amritauniv-my.sharepoint.com/personal/varunnair_am_amrita_edu/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fvarunnair_am_amrita_edu%2FDocuments%2FGit-Gambit&ga=1)
+[VMLink](https://pentathon.s3.ap-south-1.amazonaws.com/Git-Gambit.7z)
 
+File hash ( SHA256) -  AA92883C17A126ABCFA0E8F9D4BD9CF5F2265AF33C8E9664D3BFD699DB90E5B6
 ## Exploit
 [Writeup](Git-Gambit_Write-up.pdf)
 
