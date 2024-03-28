@@ -1,6 +1,6 @@
 FROM debian:buster-slim
 RUN apt-get update && apt-get install -y \
-    openssh-server apache2 php libapache2-mod-php openssh-server nfs-kernel-server php-xml sudo 
+    openssh-server apache2 php libapache2-mod-php openssh-server nfs-kernel-server php-xml sudo python3 wget curl python3-pip
 
 RUN useradd -m metro
 RUN echo "metro:blood4lyfe" | chpasswd

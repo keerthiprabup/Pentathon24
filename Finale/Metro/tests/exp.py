@@ -3,7 +3,7 @@ from icecream import ic
 
 # Set up pwntools for the correct architecture
 exe = "./chall"
-libc = ELF("/lib/x86_64-linux-gnu/libc.so.6")
+libc = ELF("libc.so.6")
 context.binary = elf = ELF(exe)
 context.log_level = "debug"
 context.aslr = True
@@ -11,7 +11,7 @@ context.aslr = True
 def start(argv=[], *a, **kw):
     '''Start the exploit against the target.'''
     if args.REMOTE:
-        return remote("", )
+        return remote("172.17.0.1", 5000)
     if args.GDB:
         return gdb.debug([exe] + argv, gdbscript=gdbscript, *a, **kw)
     else:
