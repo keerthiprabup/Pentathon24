@@ -2,8 +2,8 @@
 
 apt-get update && apt-get install -y docker.io cron
 service docker start
-./.box/docker_start.sh 
-
+cd ./.box/ && ./docker_start.sh 
+cd -
 
 
 useradd -m metro && echo "metro:0n3_m0r3_st3p_c10s3r" | chpasswd
@@ -19,6 +19,6 @@ echo "pentathon{fakeroot}" > /root/root.txt
 sudo -u metro /home/metro/ynetd -p 5000 -a $(ip addr show docker0 | grep -Po 'inet \K[\d.]+') /home/metro/backup/register &
 
 #Cron for healthcheck
-service cron status || service cron start
+echo "* * * * * /bin/bash /root/check.sh" | crontab -
+service cron status || service cron start &
 rm entry.sh stop.sh ./.box -rf
-./check.sh
