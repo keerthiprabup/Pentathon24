@@ -1,0 +1,59 @@
+# /etc/ssh/sshd_config
+
+# Port 22 is the default port for SSH. You can change it if you wish.
+Port 22
+
+# Protocol version, you can specify '2' for SSH-2 only or '1' for SSH-1 only.
+Protocol 2
+
+# Permit root login. It's recommended to set this to 'no' for security reasons.
+PermitRootLogin yes
+
+# Allow users to login using password authentication.
+PasswordAuthentication yes
+
+# Allow public key authentication. You should have public keys in ~/.ssh/authorized_keys.
+PubkeyAuthentication yes
+
+# Allow only specific users to login via SSH.
+# AllowUsers username1 username2
+
+# Limit SSH access to specific groups. Only users in these groups can SSH.
+#AllowGroups sshusers
+
+# Enable X11 forwarding.
+X11Forwarding yes
+
+# Set this to 'yes' if you want to ignore the user's .rhosts and .shosts files.
+IgnoreRhosts yes
+
+# Disable host-based authentication.
+HostbasedAuthentication no
+
+# Set the logging level.
+LogLevel INFO
+
+# Specify a banner file to be displayed before authentication.
+#Banner /etc/issue.net
+
+# Allow TCP forwarding.
+AllowTcpForwarding yes
+
+# Specify which ciphers to use. You may want to limit this for security reasons.
+#Ciphers aes128-ctr,aes192-ctr,aes256-ctr
+
+# Disable password authentication for root.
+#PermitRootLogin without-password
+
+# Set client alive interval (keepalive).
+ClientAliveInterval 300
+ClientAliveCountMax 2
+
+# UsePAM enables the Pluggable Authentication Module interface.
+UsePAM yes
+
+# AllowAgentForwarding allows authentication agent connection forwarding.
+AllowAgentForwarding yes
+
+# AllowTcpForwarding allows TCP forwarding when it would otherwise be disabled.
+AllowTcpForwarding yes
