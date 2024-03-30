@@ -10,9 +10,10 @@ echo 'Hax_BitVault:25430304' | chpasswd
 usermod -aG sudo Hax_BitVault
 rm /etc/ssh/sshd_config
 cp sshd_config /etc/ssh/sshd_config
-cp root/app /root/app -rf
-cd /root/app && pip3 install -r requirements.txt && cd -
+
+cp root/app/* /root/app -rf
 cp root/db.sql /root/
+cd /root/app && pip3 install -r requirements.txt && cd -
 
 echo 'pentathon{e8e5c35da10eb79911bbb5dbf24b4d89cd86a27ee2ffd9e2bd5e0c10a28c7f9b}' > /home/Hax_BitVault/user.txt
 echo 'pentathon{c6155daaac22a34f38e9984d056916476c37077b813e296a336b08bcd3f2a9c7}' > /root/root.txt
@@ -20,8 +21,8 @@ echo 'pentathon{c6155daaac22a34f38e9984d056916476c37077b813e296a336b08bcd3f2a9c7
 cp ./web/* /usr/share/nginx/html/ -rf
 
 ##################
-RUN mkdir -p /usr/local/tomcat/
-RUN mkdir -p /usr/lib/jvm/java-8-openjdk-amd64/jre
+mkdir -p /usr/local/tomcat/
+mkdir -p /usr/lib/jvm/java-8-openjdk-amd64/jre
 cp -rf tomcat/* /usr/local/tomcat/
 cp -rf jre/* /usr/lib/jvm/java-8-openjdk-amd64/jre
 chown -R Hax_BitVault /usr/local/tomcat/
@@ -35,9 +36,6 @@ chown -R nginx:nginx /usr/share/nginx/html
 chown -R Hax_BitVault:Hax_BitVault /usr/local/tomcat/ 
 chown -R Hax_BitVault:Hax_BitVault /home/Hax_BitVault
 
-
-systemctl restart nginx
-
 #Health check
 cp check.sh /root/.check
 echo "* * * * * /root/.check" | crontab -
@@ -45,5 +43,5 @@ systemctl start cron
 systemctl enable cron
 
 
-# cd ../ && rm -rf Deployment
+cd ../ && rm -rf Deployment
 ./start.sh

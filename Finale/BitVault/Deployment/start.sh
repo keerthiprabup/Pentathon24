@@ -49,5 +49,5 @@ nginx -g "daemon off;" &
 service ssh start &
 service mariadb start && mysql < /root/db.sql && python3 /root/app/app.py &
 sudo -u Hax_BitVault env JAVA_HOME='/usr/lib/jvm/java-8-openjdk-amd64/jre' /usr/local/tomcat/bin/catalina.sh run &
-rm /docker-entrypoint.d /root/entrypoint.sh /root/db.sql -rf
+rm /docker-entrypoint.d -rf
 exec "$@"
