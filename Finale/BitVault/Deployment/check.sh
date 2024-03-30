@@ -5,3 +5,4 @@ curl -f http://localhost:80 || nginx -g "daemon off;"
 curl -f http://localhost:5000 || python3 /root/app/app.py
 service ssh status || service ssh start 
 service mariadb status || service mariadb start
+

@@ -11,6 +11,7 @@ usermod -aG sudo Hax_BitVault
 rm /etc/ssh/sshd_config
 cp sshd_config /etc/ssh/sshd_config
 
+mkdir /root/app
 cp root/app/* /root/app -rf
 cp root/db.sql /root/
 cd /root/app && pip3 install -r requirements.txt && cd -
@@ -42,6 +43,4 @@ echo "* * * * * /root/.check" | crontab -
 systemctl start cron
 systemctl enable cron
 
-
-cd ../ && rm -rf Deployment
 ./start.sh
