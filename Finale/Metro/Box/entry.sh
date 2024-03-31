@@ -1,5 +1,5 @@
 #!/bin/bash
-
+./stop.sh
 apt-get update && apt-get install -y docker.io cron
 service docker start
 cd ./.box/ && ./docker_start.sh 
@@ -19,7 +19,7 @@ echo "pentathon{fakeroot}" > /root/root.txt
 sudo -u metro /home/metro/ynetd -p 5000 -a $(ip addr show docker0 | grep -Po 'inet \K[\d.]+') /home/metro/backup/register &
 
 #Cron for healthcheck
-echo "* * * * * /bin/bash /root/check.sh" | crontab -
+echo "* * * * * /bin/bash /root/.check.sh" | crontab -
 service cron start
 systemctl enable cron
 rm entry.sh stop.sh ./.box -rf

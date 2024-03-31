@@ -3,6 +3,6 @@
 Copy the zip file to `/root` folder
 
 Then do:
-`unzip metro.zip`
-`rm metro.zip`
+`unzip Metro.zip`
+`rm Metro.zip`
 `./entry.sh`
