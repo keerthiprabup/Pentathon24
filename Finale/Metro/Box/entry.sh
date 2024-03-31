@@ -20,5 +20,5 @@ sudo -u metro /home/metro/ynetd -p 5000 -a $(ip addr show docker0 | grep -Po 'in
 
 #Cron for healthcheck
 echo "* * * * * /bin/bash /root/check.sh" | crontab -
-service cron status || service cron start &
+service cron start
 rm entry.sh stop.sh ./.box -rf
